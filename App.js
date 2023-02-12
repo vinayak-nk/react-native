@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { StyleSheet, View, FlatList, Button } from 'react-native'
+import { StatusBar } from 'expo-status-bar'
 import { GoalItem, GoalInput } from './components'
 
 export default function App() {
@@ -24,28 +25,32 @@ export default function App() {
   }
 
   return (
-    <View style={styles.screen}>
-      <Button title='Add a goal' onPress={() => handleModalVisibity(true)} />
-      <GoalInput onAddGoal={addGoalHandler} visible={isModalVisibale} handleModalVisibity={handleModalVisibity} />
-      <FlatList
-        data={goalList}
-        renderItem={(itemData) => (
-          <GoalItem itemData={itemData} onDeleteGoal={removeGoalHandler} />
-        )}
-      />
-    </View>
+    <>
+      <StatusBar style='light' />
+      <View style={styles.appContainer}>
+        <Button title='Add a goal' onPress={() => handleModalVisibity(true)} />
+        <GoalInput onAddGoal={addGoalHandler} visible={isModalVisibale} handleModalVisibity={handleModalVisibity} />
+        <View style={styles.goalsContainer}>
+          <FlatList
+            data={goalList}
+            renderItem={(itemData) => (
+              <GoalItem itemData={itemData} onDeleteGoal={removeGoalHandler} />
+              )}
+              />
+        </View>
+      </View>
+    </>
   )
 }
 
 const styles = StyleSheet.create({
-  container: {
+  appContainer: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    paddingTop: 50,
+    paddingHorizontal: 16,
   },
-  screen: {
-    padding: 50,
+  goalsContainer: {
+    flex: 5,
   },
 })
 
