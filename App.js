@@ -8,11 +8,13 @@ export default function App() {
   const getRandomNumber = () => Math.ceil(Math.random() * (10 ** 16))
 
   const addGoalHandler = (goalTitle) => {
-    setGoalList([...goalList, { key: getRandomNumber().toString(), value: goalTitle }])
+    // setGoalList([...goalList, { key: getRandomNumber().toString(), value: goalTitle }])
+    setGoalList(currentGoals => [...currentGoals, { key: getRandomNumber().toString(), value: goalTitle }])
   }
 
   const removeGoalHandler = (goalId) => {
-    setGoalList(goalList.filter((goal) => goal.key !== goalId))
+    // setGoalList(goalList.filter((goal) => goal.key !== goalId))
+    setGoalList(currentGoals =>  currentGoals.filter((goal) => goal.key !== goalId))
   }
 
   return (
