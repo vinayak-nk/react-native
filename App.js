@@ -1,43 +1,127 @@
 import React, { useState } from 'react'
-import { StyleSheet, Text, View, Button, TextInput, FlatList, SafeAreaView } from 'react-native';
+import { StyleSheet, View, FlatList } from 'react-native'
 import { GoalItem, GoalInput } from './components'
 
 export default function App() {
-  const [goals, AddGoal] = useState([])
-  const [goal, onChangeHandler] = useState('')
+  const [goalList, setGoalList] = useState([])
 
-  const onButtonClick = () => {
-    AddGoal([
-      ...goals,
-      {goal, id: Math.random().toString()}
-    ])
+  const getRandomNumber = () => Math.ceil(Math.random() * (10 ** 16))
+
+  const addGoalHandler = (goalTitle) => {
+    setGoalList([...goalList, { key: getRandomNumber().toString(), value: goalTitle }])
+  }
+
+  const removeGoalHandler = (goalId) => {
+    setGoalList(goalList.filter((goal) => goal.key !== goalId))
   }
 
   return (
-    <View style={styles.container}>
-      <View style={styles.goalsContainer}>
-        <GoalInput onButtonClick={onButtonClick} goal={goal} onChangeHandler={onChangeHandler} />
-        <Text style={{ color: 'green', fontSize: 16 }}>List of goals</Text>
-        <FlatList 
-          data={goals}
-          renderItem={(itemData) => <GoalItem goal={itemData.item.goal} />}
-          keyExtractor={(item, index) => item.id}
-        />
-      </View>
+    <View style={styles.screen}>
+      <GoalInput onAddGoal={addGoalHandler} />
+      <FlatList
+        data={goalList}
+        renderItem={(itemData) => (
+          <GoalItem itemData={itemData} onDeleteGoal={removeGoalHandler} />
+        )}
+      />
     </View>
-  );
+  )
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    margin: 8,
-    marginTop: 32,
-    // alignItems: 'center',
-    // justifyContent: 'center',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
-  goalsContainer: {
-    flex: 3,
-  }
-});
+  screen: {
+    padding: 50,
+  },
+})
+
+// before breaking into components
+
+// export default function App() {
+//   const [enteredGoal, setEnteredGoal] = useState('')
+//   const [goalList, setGoalList] = useState([])
+
+//   const getRandomNumber = () => Math.ceil(Math.random() * (10 ** 16))
+
+//   const goalInputHandler = (enteredText) => {
+//     setEnteredGoal(enteredText)
+//   }
+
+//   // const addGoalHandler = () => {
+//   //   setGoalList([...goalList, enteredGoal])
+//   // }
+
+//   // for flatlist
+//   const addGoalHandler = () => {
+//     setGoalList([...goalList, { key: getRandomNumber().toString(), value: enteredGoal }])
+//   }
+
+//   return (
+//     <View style={styles.screen}>
+//       <View style={styles.inputContainer}>
+//         <TextInput
+//           placeholder="Course Goal"
+//           style={{
+//             borderColor: 'blue', borderWidth: 1, padding: 10, width: '80%',
+//           }}
+//           onChangeText={goalInputHandler}
+//           value={enteredGoal}
+//         />
+//         <Button title="ADD" onPress={addGoalHandler} />
+//       </View>
+//       <FlatList
+//         data={goalList}
+//         renderItem={(itemData) => (
+//           <View style={styles.listItem}>
+//             <Text>
+//               {itemData.item.value}
+//             </Text>
+//           </View>
+//         )}
+//       />
+//       {/* <ScrollView>
+//         {goalList.map((goal) => (
+//           <View key={goal} style={styles.listItem}>
+//             <Text>
+//               {goal}
+//             </Text>
+//           </View>
+//         ))}
+//       </ScrollView> */}
+//     </View>
+//   )
+// }
+
+// count example
+// import React, { useState } from 'react'
+// import { View, Text, Button, StyleSheet } from 'react-native'
+
+// const App = () => {
+//   const [count, setCount] = useState(0)
+
+//   return (
+//     <View style={styles.container}>
+//       <Text>You clicked {count} times</Text>
+//       <Button
+//         onPress={() => setCount(count + 1)}
+//         title="Click me!"
+//       />
+//     </View>
+//   )
+// }
+
+// // React Native Styles
+// const styles = StyleSheet.create({
+//   container: {
+//     flex: 1,
+//     justifyContent: 'center',
+//     alignItems: 'center',
+//   },
+// })
+
+// export default App

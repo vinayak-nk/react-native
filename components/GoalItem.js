@@ -1,6 +1,15 @@
-import { StyleSheet, Text } from 'react-native'
+import { StyleSheet, Text, TouchableOpacity } from 'react-native'
 
-const GoalItem = ({ goal }) => <Text style={styles.item}>{goal}</Text>  
+const GoalItem = ({ itemData, onDeleteGoal }) => {
+  const { value, key } = itemData.item
+  return (
+    <TouchableOpacity onPress={() => onDeleteGoal(key)}>
+        <Text style={styles.item}>
+          {value}
+        </Text>
+    </TouchableOpacity>
+  )
+}
 
 export default GoalItem
 
