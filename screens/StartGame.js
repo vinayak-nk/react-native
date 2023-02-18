@@ -1,18 +1,20 @@
-import { TextInput, View, Text, StyleSheet } from 'react-native'
+import {
+  TextInput, View, Text, StyleSheet,
+} from 'react-native'
 
 import { PrimaryButton } from '../components'
 
-const StartGame = () => {
+function StartGame() {
   return (
     <View style={styles.inputContainer}>
-      <TextInput 
+      <TextInput
         style={styles.numberInput}
         maxLength={2}
-        keyboardType='number-pad'
+        keyboardType="number-pad"
       />
       <View style={styles.buttonsContainer}>
-        <PrimaryButton>Reset</PrimaryButton>
-        <PrimaryButton>Confirm</PrimaryButton>
+        <PrimaryButton><Text>Reset</Text></PrimaryButton>
+        <PrimaryButton><Text>Confirm</Text></PrimaryButton>
       </View>
     </View>
   )
@@ -27,7 +29,7 @@ const styles = StyleSheet.create({
     marginTop: 100,
     marginHorizontal: 24,
     borderRadius: 8,
-    backgroundColor: '#4e0329',
+    backgroundColor: '#3b041f',
 
     shadowColor: 'black',
     shadowOffset: { width: 0, height: 10 },
@@ -46,9 +48,9 @@ const styles = StyleSheet.create({
     marginVertical: 8,
     fontWeight: 'bold',
   },
-  buttonsContainer : {
+  buttonsContainer: {
     flexDirection: 'row',
-  }
+  },
 })
 
 export default StartGame

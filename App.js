@@ -1,20 +1,21 @@
-import React, { useState } from 'react'
-import { StyleSheet, View } from 'react-native'
+import React from 'react'
+import { StyleSheet } from 'react-native'
+import { LinearGradient } from 'expo-linear-gradient'
 // import { StatusBar } from 'expo-status-bar'
 
-import { GameOver, StartGame, GameScreen } from './screens'
+import { StartGame } from './screens'
 
 export default function App() {
   return (
-    <View style={styles.appContainer}>
+    <LinearGradient colors={['#4e0329', '#ddb52f']} style={styles.appContainer}>
       <StartGame />
-    </View>
+    </LinearGradient>
   )
 }
 
 const styles = StyleSheet.create({
   appContainer: {
     flex: 1,
-    backgroundColor: '#ddb52f',
+    // backgroundColor: '#ddb52f',
   },
 })
