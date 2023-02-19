@@ -1,5 +1,5 @@
 import GameOver from './GameOver'
 import GameScreen from './GameScreen'
-import StartGame from './StartGame'
+import GameStart from './GameStart'
 
-export { GameOver, GameScreen, StartGame }
+export { GameOver, GameScreen, GameStart }
