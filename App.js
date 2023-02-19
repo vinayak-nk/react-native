@@ -1,9 +1,13 @@
+/* eslint-disable import/no-extraneous-dependencies */
+/* eslint-disable global-require */
 import React, { useState } from 'react'
 import {
   StyleSheet, ImageBackground, SafeAreaView, StatusBar,
 } from 'react-native'
 import { LinearGradient } from 'expo-linear-gradient'
 // import { StatusBar } from 'expo-status-bar'
+import { useFonts } from 'expo-font'
+import AppLoading from 'expo-app-loading'
 import constants from './utils/constants'
 
 import { GameStart, GameScreen, GameOver } from './screens'
@@ -11,6 +15,13 @@ import { GameStart, GameScreen, GameOver } from './screens'
 export default function App() {
   const [confirmedNumber, setConfirmedNum] = useState()
   const [gameOver, setGameOver] = useState(true)
+
+  const [fontsLoaded] = useFonts({
+    openRegular: require('./assets/fonts/OpenSans-Regular.ttf'),
+    openBold: require('./assets/fonts/OpenSans-Bold.ttf'),
+  })
+
+  if (!fontsLoaded) return <AppLoading />
 
   const setUserNumber = (enteredNum) => {
     setConfirmedNum(enteredNum)

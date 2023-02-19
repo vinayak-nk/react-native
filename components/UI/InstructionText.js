@@ -14,6 +14,7 @@ const styles = StyleSheet.create({
   instructions: {
     color: constants.Colors.accent500,
     fontSize: 18,
-    fontWeight: '800',
+    // fontWeight: '800',
+    fontFamily: 'openRegular',
   },
 })

@@ -1,8 +1,9 @@
+/* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable react/prop-types */
 import { useState, useEffect } from 'react'
-import {
-  Text, View, StyleSheet, Alert,
-} from 'react-native'
+import { View, StyleSheet, Alert } from 'react-native'
+
+import { Ionicons } from '@expo/vector-icons'
 import {
   Title, NumberContainer, PrimaryButton, Card, InstructionText,
 } from '../components'
@@ -44,13 +45,13 @@ function GameScreen({ userNumber, onGameOver }) {
       <Title text="Opponents Guess" />
       <NumberContainer>{currentGuess}</NumberContainer>
       <Card>
-        <InstructionText text="Higher or lower" style={styles.instructionsObj} />
+        <InstructionText text="Higher or lower?" style={styles.instructionsObj} />
         <View style={styles.buttonContainer}>
           <PrimaryButton onPressHandler={nextGuessHandler.bind(this, 'lower')}>
-            <Text>-</Text>
+            <Ionicons name="md-remove" size={24} color="white" />
           </PrimaryButton>
           <PrimaryButton onPressHandler={nextGuessHandler.bind(this, 'higher')}>
-            <Text>+</Text>
+            <Ionicons name="md-add" size={24} color="white" />
           </PrimaryButton>
         </View>
       </Card>
