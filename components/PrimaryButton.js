@@ -2,13 +2,14 @@ import React from 'react'
 import {
   View, Text, StyleSheet, Pressable,
 } from 'react-native'
+import constants from '../utils/constants'
 
 function PrimaryButton({ children, onPressHandler }) {
   return (
     <View style={styles.buttonOuterContainer}>
       <Pressable
         onPress={onPressHandler}
-        android_ripple={{ color: 'blue' }} // anroid
+        android_ripple={{ color: constants.Colors.primary600 }} // anroid
         style={({ pressed }) => (pressed
           ? [styles.pressed, styles.buttonInnerContainer]
           : styles.buttonInnerContainer)}
@@ -28,7 +29,7 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
   },
   buttonInnerContainer: {
-    backgroundColor: '#72063c',
+    backgroundColor: constants.Colors.primary500,
     paddingVertical: 8,
     paddingHorizontal: 50,
     elevation: 2,

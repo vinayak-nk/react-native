@@ -4,8 +4,9 @@ import {
 } from 'react-native'
 
 import { PrimaryButton } from '../components'
+import constants from '../utils/constants'
 
-function GameStart() {
+function GameStart({ onNumberConfirm }) {
   const [inputNumber, setNum] = useState('')
 
   const onChangeTextHandler = (enteredText) => {
@@ -29,10 +30,8 @@ function GameStart() {
       ) // title, msg, configure buttons
       return
     }
-    console.log('')
-    // return true
+    onNumberConfirm(numberEntered)
   }
-  console.log('inputNumber', inputNumber)
 
   return (
     <View style={styles.inputContainer}>
@@ -64,7 +63,7 @@ const styles = StyleSheet.create({
     marginTop: 100,
     marginHorizontal: 24,
     borderRadius: 8,
-    backgroundColor: '#3b041f',
+    backgroundColor: constants.Colors.primary800,
 
     shadowColor: 'black',
     shadowOffset: { width: 0, height: 10 },
@@ -77,9 +76,9 @@ const styles = StyleSheet.create({
     width: 40,
     textAlign: 'center',
     fontSize: 32,
-    borderBottomColor: '#ddb52f',
+    borderBottomColor: constants.Colors.accent500,
     borderBottomWidth: 2,
-    color: '#ddb52f',
+    color: constants.Colors.accent500,
     marginVertical: 8,
     fontWeight: 'bold',
   },

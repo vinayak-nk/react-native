@@ -1,4 +1,4 @@
-import GoalItem from "./GoalItem";
-import PrimaryButton from "./PrimaryButton"
+import Title from './Title'
+import PrimaryButton from './PrimaryButton'
 
-export { PrimaryButton, GoalItem }
+export { PrimaryButton, Title }
