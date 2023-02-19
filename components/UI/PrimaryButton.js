@@ -2,7 +2,7 @@ import React from 'react'
 import {
   View, Text, StyleSheet, Pressable,
 } from 'react-native'
-import constants from '../utils/constants'
+import constants from '../../utils/constants'
 
 function PrimaryButton({ children, onPressHandler }) {
   return (

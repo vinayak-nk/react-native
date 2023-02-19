@@ -1,5 +1,5 @@
 import { StyleSheet, Text } from 'react-native'
-import constants from '../utils/constants'
+import constants from '../../utils/constants'
 
 function Title({ text }) {
   return (
@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 24,
     fontWeight: 'bold',
-    color: constants.Colors.accent500,
+    color: constants.Colors.accent300,
     textAlign: 'center',
     borderWidth: 2,
     borderColor: constants.Colors.accent500,

@@ -1,17 +1,30 @@
 import React, { useState } from 'react'
-import { StyleSheet, ImageBackground, SafeAreaView, StatusBar } from 'react-native'
+import {
+  StyleSheet, ImageBackground, SafeAreaView, StatusBar,
+} from 'react-native'
 import { LinearGradient } from 'expo-linear-gradient'
 // import { StatusBar } from 'expo-status-bar'
 import constants from './utils/constants'
 
-import { GameStart, GameScreen } from './screens'
+import { GameStart, GameScreen, GameOver } from './screens'
 
 export default function App() {
   const [confirmedNumber, setConfirmedNum] = useState()
+  const [gameOver, setGameOver] = useState(true)
 
-  let screen = <GameStart onNumberConfirm={setConfirmedNum} />
+  const setUserNumber = (enteredNum) => {
+    setConfirmedNum(enteredNum)
+    setGameOver(false)
+  }
+
+  let screen = <GameStart onNumberConfirm={setUserNumber} />
   if (confirmedNumber) {
-    screen = <GameScreen />
+    screen = (
+      <GameScreen
+        userNumber={confirmedNumber}
+        onGameOver={setGameOver}
+      />
+    )
     // const LazyComponent = lazy(() => import('./screens/GameScreen'))
     // const LoadingCmp = <Text>Loading....</Text>
     // screen = (
@@ -19,6 +32,10 @@ export default function App() {
     //     <LazyComponent />
     //   </Suspense>
     // )
+  }
+  if (gameOver && confirmedNumber) {
+    console.log('confirmedNumber', confirmedNumber)
+    screen = <GameOver />
   }
   return (
     <LinearGradient colors={['#4e0329', constants.Colors.accent500]} style={styles.appContainer}>

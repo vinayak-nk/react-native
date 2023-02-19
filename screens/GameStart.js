@@ -1,9 +1,12 @@
+/* eslint-disable react/prop-types */
 import { useState } from 'react'
 import {
   TextInput, View, Text, StyleSheet, Alert,
 } from 'react-native'
 
-import { PrimaryButton } from '../components'
+import {
+  PrimaryButton, Title, Card, InstructionText,
+} from '../components'
 import constants from '../utils/constants'
 
 function GameStart({ onNumberConfirm }) {
@@ -34,42 +37,35 @@ function GameStart({ onNumberConfirm }) {
   }
 
   return (
-    <View style={styles.inputContainer}>
-      <TextInput
-        style={styles.numberInput}
-        maxLength={2}
-        keyboardType="number-pad"
-        value={inputNumber}
-        onChangeText={onChangeTextHandler}
-      />
-      <View style={styles.buttonsContainer}>
-        <PrimaryButton onPressHandler={() => setNum('')}>
-          <Text>Reset</Text>
-        </PrimaryButton>
-        <PrimaryButton onPressHandler={confirmInputHandler}>
-          <Text>Confirm</Text>
-        </PrimaryButton>
-      </View>
+    <View style={styles.rootContainer}>
+      <Title text="Guess my number" />
+      <Card>
+        <InstructionText text="Enter a number" />
+        <TextInput
+          style={styles.numberInput}
+          maxLength={2}
+          keyboardType="number-pad"
+          value={inputNumber}
+          onChangeText={onChangeTextHandler}
+        />
+        <View style={styles.buttonsContainer}>
+          <PrimaryButton onPressHandler={() => setNum('')}>
+            <Text>Reset</Text>
+          </PrimaryButton>
+          <PrimaryButton onPressHandler={confirmInputHandler}>
+            <Text>Confirm</Text>
+          </PrimaryButton>
+        </View>
+      </Card>
     </View>
   )
 }
 
 const styles = StyleSheet.create({
-  inputContainer: {
-    // flex: 1,
-    justifyContent: 'flex-start',
+  rootContainer: {
+    flex: 1,
+    marginTop: 50,
     alignItems: 'center',
-    padding: 16,
-    marginTop: 100,
-    marginHorizontal: 24,
-    borderRadius: 8,
-    backgroundColor: constants.Colors.primary800,
-
-    shadowColor: 'black',
-    shadowOffset: { width: 0, height: 10 },
-    shadowRadius: 4,
-    shadowOpacity: 1,
-    elevation: 4,
   },
   numberInput: {
     height: 50,

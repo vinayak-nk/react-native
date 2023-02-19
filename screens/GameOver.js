@@ -1,15 +1,13 @@
-import { TextInput, View } from 'react-native'
+import { View, Text } from 'react-native'
 
 import { PrimaryButton } from '../components'
 
-const StartGameScreen = () => {
-    return (
-        <View>
-            {/* <TextInput /> */}
-            <PrimaryButton>Reset</PrimaryButton>
-            <PrimaryButton>Confirm</PrimaryButton>
-        </View>
-    )
+function StartGameScreen() {
+  return (
+    <View>
+      <Text>Game Over</Text>
+    </View>
+  )
 }
 
 export default StartGameScreen
