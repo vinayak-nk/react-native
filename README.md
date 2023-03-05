@@ -7,7 +7,7 @@
 7. Custom fonts
 8. Loading Icon
 9. expo-splash-screen
-
+10. Responsive resign
 # react-native
 npm install -g expo-cli
 
@@ -100,3 +100,9 @@ expo-app-loading - deprecated
 expo-splash-screen
 ====================
 npx expo install expo-splash-screen
+
+10. Responsive Design
+======================
+
+import { Dimensions } from 'react-native'
+const deviceWidth = Dimensions.get('window').width

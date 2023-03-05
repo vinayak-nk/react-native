@@ -111,8 +111,8 @@ export default function App() {
   return (
     <LinearGradient colors={['#4e0329', constants.Colors.accent500]} style={styles.appContainer}>
       <ImageBackground
-        source={require('./assets/images/goal.png')}
-        resizeMode="contain"
+        source={require('./assets/images/background.png')}
+        resizeMode="cover"
         style={styles.appContainer}
         imageStyle={styles.backgoundImage}
       >
@@ -133,6 +133,7 @@ const styles = StyleSheet.create({
     marginTop: StatusBar.currentHeight,
   },
   backgoundImage: {
+    flex: 1,
     opacity: 0.15,
   },
 })

@@ -1,5 +1,5 @@
 import {
-  View, Image, StyleSheet, Text,
+  View, Image, StyleSheet, Text, Dimensions,
 } from 'react-native'
 
 import { Title, PrimaryButton } from '../components'
@@ -39,6 +39,8 @@ function StartGameScreen({ rounds, userNumber, onGameRestartHandler }) {
 
 export default StartGameScreen
 
+const deviceWidth = Dimensions.get('window').width
+
 const styles = StyleSheet.create({
   rootContainer: {
     flex: 1,
@@ -47,8 +49,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   ImageContainer: {
-    width: 300,
-    height: 300,
+    // width: 300,
+    // height: 300,
+    height: deviceWidth > 400 ? 300 : 250,
+    width: deviceWidth > 400 ? 300 : 250,
     borderRadius: 150,
     borderWidth: 3,
     borderColor: constants.Colors.primary800,
