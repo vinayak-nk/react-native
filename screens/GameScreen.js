@@ -1,11 +1,13 @@
 /* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable react/prop-types */
 import { useState, useEffect } from 'react'
-import { View, StyleSheet, Alert } from 'react-native'
+import {
+  View, StyleSheet, Alert, FlatList,
+} from 'react-native'
 
 import { Ionicons } from '@expo/vector-icons'
 import {
-  Title, NumberContainer, PrimaryButton, Card, InstructionText,
+  Title, NumberContainer, PrimaryButton, Card, InstructionText, GuessLogItem,
 } from '../components'
 
 const generateRandomNumber = (min, max, exclude) => {
@@ -23,10 +25,16 @@ let maxBoundary = 100
 function GameScreen({ userNumber, onGameOver }) {
   const initialGuess = generateRandomNumber(1, 100, userNumber)
   const [currentGuess, setCurrentGuess] = useState(initialGuess)
+  const [guessRounds, setGuessRounds] = useState([initialGuess])
 
   useEffect(() => {
-    if (currentGuess === userNumber) onGameOver(true)
+    if (currentGuess === userNumber) onGameOver(guessRounds.length)
   }, [currentGuess, userNumber, onGameOver])
+
+  useEffect(() => {
+    minBoundary = 1
+    maxBoundary = 100
+  }, [])
 
   const nextGuessHandler = (direction) => {
     if ((direction === 'lower' && currentGuess < userNumber)
@@ -37,6 +45,7 @@ function GameScreen({ userNumber, onGameOver }) {
       else minBoundary = currentGuess
       const newRandomNum = generateRandomNumber(minBoundary, maxBoundary, currentGuess)
       setCurrentGuess(newRandomNum)
+      setGuessRounds((prevGuessRounds) => [newRandomNum, ...prevGuessRounds])
     }
   }
 
@@ -56,6 +65,17 @@ function GameScreen({ userNumber, onGameOver }) {
         </View>
       </Card>
       {/* <View>Log ROUND</View> */}
+      <View style={styles.flstlist}>
+        {/* {guessRounds.map((guess) => <Text key={guess}>{guess}</Text>)} */}
+        <FlatList
+          data={guessRounds}
+          renderItem={(itemData) => <GuessLogItem roundNumber={guessRounds.length - itemData.index} guess={itemData.item} />}
+          // renderItem={(itemData) => <Text>{itemData.item}</Text>}
+          keyExtractor={(item) => item}
+          contentContainerStyle={{ flexGrow: 1 }}
+          ListFooterComponent={<View style={{ height: 20 }} />}
+        />
+      </View>
     </View>
   )
 }
@@ -71,6 +91,12 @@ const styles = StyleSheet.create({
   },
   instructionsObj: {
     marginBottom: 16,
+  },
+  flstlist: {
+    height: '100%',
+    padding: 16,
+    flex: 1,
+    flexGrow: 1,
   },
 })
 

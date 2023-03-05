@@ -4,8 +4,9 @@ import Card from './UI/Card'
 import InstructionText from './UI/InstructionText'
 
 import NumberContainer from './Game/NumberContainer'
+import GuessLogItem from './Game/GuessLogItem'
 
 export {
   PrimaryButton, Title, Card, InstructionText,
-  NumberContainer,
+  NumberContainer, GuessLogItem,
 }
