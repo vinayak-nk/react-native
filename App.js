@@ -2,12 +2,12 @@
 /* eslint-disable global-require */
 import React, { useState, useEffect, useCallback } from 'react'
 import {
-  StyleSheet, ImageBackground, SafeAreaView, StatusBar, View, Text,
+  StyleSheet, ImageBackground, SafeAreaView, Text,
 } from 'react-native'
 import { LinearGradient } from 'expo-linear-gradient'
 import * as SplashScreen from 'expo-splash-screen'
 import * as Font from 'expo-font'
-// import { StatusBar } from 'expo-status-bar'
+import { StatusBar } from 'expo-status-bar'
 // import { useFonts } from 'expo-font'
 // import AppLoading from 'expo-app-loading'
 import constants from './utils/constants'
@@ -109,18 +109,21 @@ export default function App() {
   }
   // if (restartGame === true) screen = <GameStart onNumberConfirm={setUserNumber} />
   return (
-    <LinearGradient colors={['#4e0329', constants.Colors.accent500]} style={styles.appContainer}>
-      <ImageBackground
-        source={require('./assets/images/background.png')}
-        resizeMode="cover"
-        style={styles.appContainer}
-        imageStyle={styles.backgoundImage}
-      >
-        <SafeAreaView style={styles.safeArea} onLayout={onLayoutRootView}>
-          {screen}
-        </SafeAreaView>
-      </ImageBackground>
-    </LinearGradient>
+    <>
+      <StatusBar style="light" />
+      <LinearGradient colors={['#4e0329', constants.Colors.accent500]} style={styles.appContainer}>
+        <ImageBackground
+          source={require('./assets/images/background.png')}
+          resizeMode="cover"
+          style={styles.appContainer}
+          imageStyle={styles.backgoundImage}
+        >
+          <SafeAreaView style={styles.safeArea} onLayout={onLayoutRootView}>
+            {screen}
+          </SafeAreaView>
+        </ImageBackground>
+      </LinearGradient>
+    </>
   )
 }
 

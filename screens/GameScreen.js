@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react'
 import {
   View, StyleSheet, Alert, FlatList,
+  Dimensions, useWindowDimensions,
 } from 'react-native'
 
 import { Ionicons } from '@expo/vector-icons'
@@ -26,6 +27,7 @@ function GameScreen({ userNumber, onGameOver }) {
   const initialGuess = generateRandomNumber(1, 100, userNumber)
   const [currentGuess, setCurrentGuess] = useState(initialGuess)
   const [guessRounds, setGuessRounds] = useState([initialGuess])
+  const { width, height } = useWindowDimensions()
 
   useEffect(() => {
     if (currentGuess === userNumber) onGameOver(guessRounds.length)
@@ -49,9 +51,8 @@ function GameScreen({ userNumber, onGameOver }) {
     }
   }
 
-  return (
-    <View style={styles.screen}>
-      <Title text="Opponents Guess" />
+  let content = (
+    <>
       <NumberContainer>{currentGuess}</NumberContainer>
       <Card>
         <InstructionText text="Higher or lower?" style={styles.instructionsObj} />
@@ -64,7 +65,34 @@ function GameScreen({ userNumber, onGameOver }) {
           </PrimaryButton>
         </View>
       </Card>
-      {/* <View>Log ROUND</View> */}
+    </>
+  )
+
+  if (width > 600) {
+    content = (
+      <>
+        {/* <InstructionText text="Higher or lower?" style={styles.instructionsObj} /> */}
+        <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+          <View style={styles.buttonContainer}>
+            <PrimaryButton onPressHandler={nextGuessHandler.bind(this, 'lower')}>
+              <Ionicons name="md-remove" size={24} color="white" />
+            </PrimaryButton>
+          </View>
+          <NumberContainer>{currentGuess}</NumberContainer>
+          <View style={styles.buttonContainer}>
+            <PrimaryButton onPressHandler={nextGuessHandler.bind(this, 'higher')}>
+              <Ionicons name="md-add" size={24} color="white" />
+            </PrimaryButton>
+          </View>
+        </View>
+      </>
+    )
+  }
+
+  return (
+    <View style={styles.screen}>
+      <Title text="Opponents Guess" />
+      {content}
       <View style={styles.flstlist}>
         {/* {guessRounds.map((guess) => <Text key={guess}>{guess}</Text>)} */}
         <FlatList

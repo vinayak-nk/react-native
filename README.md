@@ -8,6 +8,10 @@
 8. Loading Icon
 9. expo-splash-screen
 10. Responsive resign
+  1. Dimensions
+  2. useWindowDimensions
+  3. KeyboardAvoidingView
+  4. Platform
 # react-native
 npm install -g expo-cli
 
@@ -103,6 +107,18 @@ npx expo install expo-splash-screen
 
 10. Responsive Design
 ======================
+app.json
+-----------
+"orientation": "default", // portrait, landscape
 
-import { Dimensions } from 'react-native'
+import { Dimensions } from 'react-native' // lock
 const deviceWidth = Dimensions.get('window').width
+
+import { useWindowDimensions } from 'react-native' // dynamic
+const { width, height } = useWindowDimensions()
+
+
+import { Platform } from 'react-native'
+
+borderWidth: Platform.OS === 'android' ? 4 : 0, // android, ios, macos, web, windows
+
